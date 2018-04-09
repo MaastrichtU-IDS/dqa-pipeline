@@ -4,7 +4,6 @@
 # dqa_pipeline
 
 ## check out
-TODO: this does not work yet
 ```
 git clone --recursive https://github.com/MaastrichtU-IDS/dqa_pipeline.git
 ```

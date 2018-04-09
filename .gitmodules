@@ -1,0 +1,15 @@
+[submodule "RDFUnit"]
+	path = RDFUnit
+	url = https://github.com/MaastrichtU-IDS/RDFUnit.git
+[submodule "RdfUpload"]
+	path = RdfUpload
+	url = https://github.com/MaastrichtU-IDS/RdfUpload.git
+[submodule "dqa_combine_statistics"]
+	path = dqa_combine_statistics
+	url = https://github.com/MaastrichtU-IDS/dqa_combine_statistics.git
+[submodule "dqa_descriptive_statistics"]
+	path = dqa_descriptive_statistics
+	url = https://github.com/MaastrichtU-IDS/dqa_descriptive_statistics.git
+[submodule "fairsharing-metrics"]
+	path = fairsharing-metrics
+	url = https://github.com/MaastrichtU-IDS/fairsharing-metrics.git

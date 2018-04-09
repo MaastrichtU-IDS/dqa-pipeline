@@ -1,3 +1,4 @@
+[![DOI](https://zenodo.org/badge/128502130.svg)](https://zenodo.org/badge/latestdoi/128502130)
 [![License](https://img.shields.io/badge/FAIR-metrics-orange.svg)](http://fairmetrics.org/)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 # dqa_pipeline

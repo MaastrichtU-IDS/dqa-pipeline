@@ -16,7 +16,7 @@ chmod +x *.sh && ./build.sh
 ## run
 
 ```
-sudo ./dqa_pipeline.sh \
+./dqa_pipeline.sh \
 -wd <work-directory> \
 -fsu <fairsharing url> \
 -iep <input-endpoint> \

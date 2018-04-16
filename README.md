@@ -25,3 +25,6 @@ sudo ./dqa_pipeline.sh \
 -oun <optional sparql endpoint username> \
 -opw <optional sparql endpoint password>
 ```
+## example
+- FAIRsharing URL: https://fairsharing.org/FAIRsharing.1x53qk
+- Input endpoint: http://sparql.wikipathways.org/

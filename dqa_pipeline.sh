@@ -10,8 +10,8 @@ usage() {
   echo " -ipw, --inputPassword		Optional password for input endpoint"
   echo " -oep, --outputEndpoint		URL of input endpoint"
   echo " -ouep, --outputUpdateEndpoint  URL of update endpoint"
-  echo " -oun, --outputUsername		Optional username for input endpoint"
-  echo " -opw, --outputPassword		Optional password for input endpoint"
+  echo " -oun, --outputUsername		Optional username for output endpoint"
+  echo " -opw, --outputPassword		Optional password for output endpoint"
 }
 
 until [ $# -eq 0 ]; do

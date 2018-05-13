@@ -23,10 +23,10 @@ git clone --recursive https://github.com/MaastrichtU-IDS/dqa_pipeline.git
 chmod +x *.sh && ./build.sh
 ```
 
-## Commands
-- wd (workDirectory): Path where intermediate files will be stored"
+## Command
+- wd (workDirectory): Path where intermediate files will be stored
 - fsu (FAIRSharingURL):	a FAIRSharing URL
-- iep (input SPARQL endpoint):	SPARQL URL of input endpoint
+- iep (input SPARQL endpoint): SPARQL URL of input endpoint
 - iun (input user name)	[Optional]: username for SPARQL input endpoint
 - ipw (input password)	[Optional]: password for SPARQL input endpoint
 - oep (output endpoint):	URL of output SPARQL endpoint 

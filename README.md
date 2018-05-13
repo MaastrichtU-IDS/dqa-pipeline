@@ -13,17 +13,28 @@ The https://github.com/MaastrichtU-IDS/dqa_combine_statistics module then combin
 
 # Installation and Usage
 
-## check out
+## Check out
 ```
 git clone --recursive https://github.com/MaastrichtU-IDS/dqa_pipeline.git
 ```
 
-## build
+## Build
 ```
 chmod +x *.sh && ./build.sh
 ```
 
-## run
+## Commands
+- wd (workDirectory): Path where intermediate files will be stored"
+- fsu (FAIRSharingURL):	a FAIRSharing URL
+- iep (input SPARQL endpoint):	SPARQL URL of input endpoint
+- iun (input user name)	[Optional]: username for SPARQL input endpoint
+- ipw (input password)	[Optional]: password for SPARQL input endpoint
+- oep (output endpoint):	URL of output SPARQL endpoint 
+- ouep (output update endpoint): URL of update SPARQL endpoint
+- oun (output user name):	[Optional] username for output SPARQL endpoint
+- opw (output password):	[Optional] password for output SPARQL endpoint
+
+## Run
 
 ```
 ./dqa_pipeline.sh \
@@ -35,6 +46,6 @@ chmod +x *.sh && ./build.sh
 -oun <optional sparql endpoint username> \
 -opw <optional sparql endpoint password>
 ```
-## example
+## Example
 - FAIRsharing URL: https://fairsharing.org/FAIRsharing.1x53qk
 - Input endpoint: http://sparql.wikipathways.org/

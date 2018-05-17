@@ -47,6 +47,7 @@ chmod +x *.sh && ./build.sh
 -opw <optional sparql endpoint password>
 ```
 ## Example
+```
 ./da_pipeline.sh \
 - wd /data/dqa_pipeline/wikipathways/2018-03-29-1330/ \
 -fsu https://fairsharing.org/FAIRsharing.1x53qk \
@@ -55,3 +56,4 @@ chmod +x *.sh && ./build.sh
 -ouep http://graphdb.dumontierlab.com/repositories/test2/statements \
 -oun import_user \
 -opw test
+```

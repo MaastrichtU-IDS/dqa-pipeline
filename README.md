@@ -49,7 +49,7 @@ chmod +x *.sh && ./build.sh
 ## Example
 ```
 ./da_pipeline.sh \
-- wd /data/dqa_pipeline/wikipathways/2018-03-29-1330/ \
+-wd /data/dqa_pipeline/wikipathways/2018-03-29-1330/ \
 -fsu https://fairsharing.org/FAIRsharing.1x53qk \
 -iep http://sparql.wikipathways.org/ \
 -oep http://graphdb.dumontierlab.com/repositories/test2 \

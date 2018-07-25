@@ -74,7 +74,6 @@ runtime=$((end-start))
 echo runtime $runtime
 
 ## combine rdf files
-
 cp $WD/results/*.ttl $WD/rdfunit.ttl
 cp $WD/fairsharing/*.nt $WD/fairsharing.nt
 
@@ -82,9 +81,6 @@ CMD4="docker run --rm -i -v ${WD}:/data dqa-combine-statistics /data/output.nt /
 echo $CMD4
 
 eval $CMD4
-
-## combine rdf files
-
 
 ## upload rdf files
 CMD5="docker run -it --rm -v ${WD}:/data dqa-rdfupload -if \"/data/output.nt\" -ep \"${OEP}\""
@@ -100,6 +96,14 @@ fi
 if [ ! -z "$OPW" ]; then
   CMD5+=" -pw \"${OPW}\""
 fi
+
+# New RdfUpload
+docker run -it --rm --link graphdb:graphdb -v ${WD}:/data rdf-upload \
+  -m "HTTP" \
+  -if "/data/output.nt" \
+  -url "http://graphdb:7200" \
+  -rep "$GRAPHDB_REPOSITORY" \
+  -un ${OUN} -pw ${OPW}
   
 
 echo $CMD5

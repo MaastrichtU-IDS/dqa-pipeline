@@ -13,31 +13,31 @@ The https://github.com/MaastrichtU-IDS/dqa_combine_statistics module then combin
 
 # Installation and Usage
 
-## Check out
-```
-git clone --recursive https://github.com/MaastrichtU-IDS/dqa_pipeline.git
+## Download
+```shell
+git clone --recursive https://github.com/MaastrichtU-IDS/dqa-pipeline.git
 ```
 
 ## Build
-```
+```shell
 chmod +x *.sh && ./build.sh
 ```
 
 ## Command
 - wd (workDirectory): Path where intermediate files will be stored
-- fsu (FAIRSharingURL):	a FAIRSharing URL
+	 fsu (FAIRSharingURL):	a FAIRSharing URL
 - iep (input SPARQL endpoint): SPARQL URL of input endpoint
-- iun (input user name)	[Optional]: username for SPARQL input endpoint
-- ipw (input password)	[Optional]: password for SPARQL input endpoint
-- oep (output endpoint):	URL of output SPARQL endpoint 
+	 iun (input user name)	[Optional]: username for SPARQL input endpoint
+	 ipw (input password)	[Optional]: password for SPARQL input endpoint
+	 oep (output endpoint):	URL of output SPARQL endpoint 
 - ouep (output update endpoint): URL of update SPARQL endpoint
-- oun (output user name):	[Optional] username for output SPARQL endpoint
-- opw (output password):	[Optional] password for output SPARQL endpoint
+	 oun (output user name):	[Optional] username for output SPARQL endpoint
+	 opw (output password):	[Optional] password for output SPARQL endpoint
 
 ## Run
 
-```
-./dqa_pipeline.sh \
+```shell
+./run.sh \
 -wd <work-directory> \
 -fsu <fairsharing url> \
 -iep <input-endpoint> \
@@ -47,9 +47,9 @@ chmod +x *.sh && ./build.sh
 -opw <optional sparql endpoint password>
 ```
 ## Example
-```
-./dqa_pipeline.sh \
--wd /data/dqa_pipeline/wikipathways/2018-03-29-1330/ \
+```shell
+./run.sh \
+-wd /data/dqa-pipeline/wikipathways/2018-03-29-1330/ \
 -fsu https://fairsharing.org/FAIRsharing.1x53qk \
 -iep http://sparql.wikipathways.org/ \
 -oep http://graphdb.dumontierlab.com/repositories/test2 \

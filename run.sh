@@ -5,13 +5,14 @@ usage() {
   echo " Work directory, input- and output-SPARQL endpoints are mandatory"
   echo " -wd, --workDirectory		Path where intermediate files will be stored"
   echo " -fsu --fairSharingUrl		Fair Sharing Url"
-  echo " -iep, --inputEndpoint		URL of input endpoint"
+  echo " -iep, --inputEndpoint		URL of SPARQL input endpoint"
   echo " -iun, --inputUserName		Optional username for input endpoint"
   echo " -ipw, --inputPassword		Optional password for input endpoint"
-  echo " -oep, --outputEndpoint		URL of input endpoint"
-  echo " -ouep, --outputUpdateEndpoint  URL of update endpoint"
+  echo " -oep, --outputEndpoint		URL of SPARQL or HTTP output endpoint"
+  echo " -ouep, --outputUpdateEndpoint  URL of SPARQL update endpoint"
   echo " -oun, --outputUsername		Optional username for output endpoint"
   echo " -opw, --outputPassword		Optional password for output endpoint"
+  echo " -ogr, --outputGraphdbRepository=test      specify a GraphDB repository for HTTP repository RDF upload. Default: test"
 }
 
 until [ $# -eq 0 ]; do
@@ -25,6 +26,7 @@ until [ $# -eq 0 ]; do
     -ouep | --outputUpdateEndpoint ) 	OUEP=$2; shift 2 ;;
     -oun  | --outputUserName ) 		OUN=$2; shift 2 ;;
     -opw  | --outputPassword ) 		OPW=$2; shift 2 ;;
+    -gr   | --graphdb-repository )    GRAPHDB_REPOSITORY=$2; shift 2 ;;
     * ) shift ;;
   esac
 done
@@ -83,25 +85,23 @@ echo $CMD4
 eval $CMD4
 
 ## upload rdf files
-CMD5="docker run -it --rm -v ${WD}:/data dqa-rdfupload -if \"/data/output.nt\" -ep \"${OEP}\""
+#CMD5="docker run -it --rm -v ${WD}:/data dqa-rdfupload -if \"/data/output.nt\" -ep \"${OEP}\""
+#if [ ! -z "$OUEP" ]; then
+#  CMD5+=" -uep \"${OUEP}\""
+#fi
+#if [ ! -z "$OUN" ]; then
+#  CMD5+=" -un \"${OUN}\""
+#fi
+#if [ ! -z "$OPW" ]; then
+#  CMD5+=" -pw \"${OPW}\""
+#fi
 
-if [ ! -z "$OUEP" ]; then
-  CMD5+=" -uep \"${OUEP}\""
-fi
-
-if [ ! -z "$OUN" ]; then
-  CMD5+=" -un \"${OUN}\""
-fi
-
-if [ ! -z "$OPW" ]; then
-  CMD5+=" -pw \"${OPW}\""
-fi
-
+# OEP: http://localhost:7200 for instance
 # New RdfUpload
-docker run -it --rm --link graphdb:graphdb -v ${WD}:/data rdf-upload \
+docker run -it --rm -v ${WD}:/data rdf-upload \
   -m "HTTP" \
   -if "/data/output.nt" \
-  -url "http://graphdb:7200" \
+  -url "$OEP" \
   -rep "$GRAPHDB_REPOSITORY" \
   -un ${OUN} -pw ${OPW}
   

@@ -43,30 +43,34 @@ We take an input endpoint, the corresponding fairsharing URL (for the input data
 -wd <work-directory> \
 -fsu <fairsharing url> \
 -iep <input-endpoint> \
+-sch <your schema> \
 -oep <your sparql endpoint> \
 -ouep <optional sparql update endpoint> \
+-ogr <output graphdb repository> \
 -oun <optional sparql endpoint username> \
 -opw <optional sparql endpoint password>
 ```
 ## Example
 ```shell
-# Old RdfUpload (SPARQL repository)
+# For WikiPathways (using HTTP repository for RdfUpload) 
+./run.sh \
+-wd /data/dqa-pipeline/wikipathways/ \
+-fsu https://fairsharing.org/FAIRsharing.1x53qk \
+-iep http://sparql.wikipathways.org/ \
+-sch https://www.w3.org/2012/pyRdfa/extract?uri=http://vocabularies.wikipathways.org/wp# \
+-oep http://graphdb.dumontierlab.com \
+-ogr test2 \
+-oun import_user \
+-opw test
+
+
+# Legacy RdfUpload (using SPARQL repository). Not working anymore
 ./run.sh \
 -wd /data/dqa-pipeline/wikipathways/2018-03-29-1330/ \
 -fsu https://fairsharing.org/FAIRsharing.1x53qk \
 -iep http://sparql.wikipathways.org/ \
 -oep http://graphdb.dumontierlab.com/repositories/test2 \
 -ouep http://graphdb.dumontierlab.com/repositories/test2/statements \
--oun import_user \
--opw test
-
-# New RdfUploaded (HTTP repository)
-./run.sh \
--wd /data/dqa-pipeline/wikipathways/2018-03-29-1330/ \
--fsu https://fairsharing.org/FAIRsharing.1x53qk \
--iep http://sparql.wikipathways.org/ \
--oep http://graphdb.dumontierlab.com \
--gr test2
 -oun import_user \
 -opw test
 ```

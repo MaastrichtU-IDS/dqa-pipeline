@@ -26,7 +26,8 @@ until [ $# -eq 0 ]; do
     -ouep | --outputUpdateEndpoint ) 	OUEP=$2; shift 2 ;;
     -oun  | --outputUserName ) 		OUN=$2; shift 2 ;;
     -opw  | --outputPassword ) 		OPW=$2; shift 2 ;;
-    -gr   | --graphdb-repository )    GRAPHDB_REPOSITORY=$2; shift 2 ;;
+    -ogr  | --outputGraphdbRepository )    OGR=$2; shift 2 ;;
+    -sch  | --schema )    SCHEMA=$2; shift 2 ;; # The dataset schema for RdfUnit
     * ) shift ;;
   esac
 done
@@ -47,15 +48,14 @@ fi
 #echo "opw=${OPW}"
 
 
-mkdir -p $
-
 ## fairsharing statistics
-CMD1="docker run --rm -i -v ${WD}/fairsharing/:/data dqa-fairsharing-metrics \"$FSU\""
+CMD1="docker run --rm -i -v ${WD}:/data dqa-fairsharing-metrics \"$FSU\""
 echo $CMD1
 
 ## rdfunit
-CMD2="docker run --rm -i -v ${WD}:/data dqa-rdfunit -d \"$IEP\" -e \"$IEP\" -f /data/ -o ttl"
+CMD2="docker run --rm -i -v ${WD}:/data dqa-rdfunit -d \"$IEP\" -e \"$IEP\" -f /data/ -s \"$SCHEMA\" -o ttl"
 echo $CMD2
+
 
 ## create descriptive statistics
 CMD3="docker run --rm -i -v ${WD}:/data dqa-descriptive-statistics ${IEP} /data/descriptive_stats.nt"
@@ -75,9 +75,9 @@ runtime=$((end-start))
 
 echo runtime $runtime
 
-## combine rdf files
-cp $WD/results/*.ttl $WD/rdfunit.ttl
-cp $WD/fairsharing/*.nt $WD/fairsharing.nt
+## combine rdf files. TODO: we should not do that here but in the containers.
+sudo cp $WD/results/*.ttl $WD/rdfunit.ttl
+#cp $WD/fairsharing/*.nt $WD/fairsharing.nt
 
 CMD4="docker run --rm -i -v ${WD}:/data dqa-combine-statistics /data/output.nt /data/descriptive_stats.nt /data/rdfunit.ttl /data/fairsharing.nt"
 echo $CMD4
@@ -98,13 +98,8 @@ eval $CMD4
 
 # OEP: http://localhost:7200 for instance
 # New RdfUpload
-docker run -it --rm -v ${WD}:/data rdf-upload \
-  -m "HTTP" \
-  -if "/data/output.nt" \
-  -url "$OEP" \
-  -rep "$GRAPHDB_REPOSITORY" \
-  -un ${OUN} -pw ${OPW}
-  
+
+CMD5="docker run -it --rm -v ${WD}:/data rdf-upload -m \"HTTP\" -if \"/data/output.nt\" -url \"$OEP\" -rep \"$OGR\" -un ${OUN} -pw ${OPW}"
 
 echo $CMD5
 eval $CMD5

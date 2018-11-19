@@ -74,3 +74,9 @@ We take an input endpoint, the corresponding fairsharing URL (for the input data
 -oun import_user \
 -opw test
 ```
+
+
+
+# TODO
+
+To implement in Java using jsoup

@@ -61,7 +61,7 @@ We take an input endpoint, the corresponding fairsharing URL (for the input data
 -oep http://graphdb.dumontierlab.com \
 -ogr test2 \
 -oun import_user \
--opw test
+-opw password
 
 
 # Legacy RdfUpload (using SPARQL repository). Not working anymore
@@ -72,7 +72,7 @@ We take an input endpoint, the corresponding fairsharing URL (for the input data
 -oep http://graphdb.dumontierlab.com/repositories/test2 \
 -ouep http://graphdb.dumontierlab.com/repositories/test2/statements \
 -oun import_user \
--opw test
+-opw password
 ```
 
 

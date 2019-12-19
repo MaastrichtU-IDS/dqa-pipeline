@@ -99,7 +99,20 @@ cwl-runner \
   support/config-cwl-dqa.yml
 ```
 
+## Using Argo workflows
 
+The DQA pipeline can be run using [Argo workflow](https://argoproj.github.io/argo).
+
+> See documentation to [run Argo workflows on the DSRI](https://maastrichtu-ids.github.io/dsri-documentation/docs/workflows-argo).
+
+```bash
+# Clone the Argo workflows repository
+git clone https://github.com/MaastrichtU-IDS/d2s-argo-workflows
+cd d2s-argo-workflows
+
+# Run the Argo workflow, with config file
+argo submit --serviceaccount argo dqa-workflow-argo.yaml -f support/config-dqa-pipeline.yml
+```
 
 # TODO
 

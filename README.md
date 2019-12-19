@@ -75,6 +75,30 @@ We take an input endpoint, the corresponding fairsharing URL (for the input data
 -opw password
 ```
 
+## Using CWL workflows
+
+The DQA pipeline can be run using the Common Workflow Language.
+
+> See the [documentation to install CWL runner](http://d2s.semanticscience.org/docs/cwl-install#install-cwl-runner).
+
+```bash
+# Create workspace
+mkdir -p /data/dqa-workspace/output/tmp-outdir
+sudo chown -R ${USER}:${USER} /data/dqa-workspace
+
+# Clone the CWL workflows repository
+git clone https://github.com/MaastrichtU-IDS/d2s-cwl-workflows
+cd d2s-cwl-workflows
+
+# Run the CWL workflow, providing the config YAML file
+cwl-runner \
+  --outdir /data/dqa-workspace/output \
+  --tmp-outdir-prefix=/data/dqa-workspace/output/tmp-outdir/ \
+  --tmpdir-prefix=/data/dqa-workspace/output/tmp-outdir/tmp- \
+  workflows/workflow-dqa.cwl \
+  support/config-cwl-dqa.yml
+```
+
 
 
 # TODO

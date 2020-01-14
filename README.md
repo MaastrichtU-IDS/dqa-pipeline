@@ -11,7 +11,52 @@ This repository links three containers, each of which measures different quality
 
 The https://github.com/MaastrichtU-IDS/dqa_combine_statistics module then combines the outputs of all the three containers, adds a timestamp and the https://github.com/MaastrichtU-IDS/RdfUpload container uploads the output file to the specified SPARQL endpoint. 
 
-# Installation and Usage
+# Installation usage
+
+## Using CWL workflows
+
+The DQA pipeline can be run using the [Common Workflow Language](https://www.commonwl.org/). See the [d2s-cwl-workflows repository](https://github.com/MaastrichtU-IDS/d2s-cwl-workflows).
+
+> See the [documentation to install CWL runner](http://d2s.semanticscience.org/docs/cwl-install#install-cwl-runner).
+
+```bash
+# Create workspace
+mkdir -p /data/dqa-workspace/output/tmp-outdir
+sudo chown -R ${USER}:${USER} /data/dqa-workspace
+
+# Clone the CWL workflows repository
+git clone https://github.com/MaastrichtU-IDS/d2s-cwl-workflows
+cd d2s-cwl-workflows
+
+# Run the CWL workflow, providing the config YAML file
+cwl-runner \
+  --outdir /data/dqa-workspace/output \
+  --tmp-outdir-prefix=/data/dqa-workspace/output/tmp-outdir/ \
+  --tmpdir-prefix=/data/dqa-workspace/output/tmp-outdir/tmp- \
+  workflows/workflow-dqa.cwl \
+  support/config-cwl-dqa.yml
+```
+
+> Workflow files goes to `/data/dqa-workspace`.
+
+## Using Argo workflows
+
+The DQA pipeline can be run using [Argo workflow](https://argoproj.github.io/argo). See the [d2s-argo-workflows repository](https://github.com/MaastrichtU-IDS/d2s-argo-workflows).
+
+> See documentation to [run Argo workflows on the DSRI](https://maastrichtu-ids.github.io/dsri-documentation/docs/workflows-argo) or on [a single machine](https://maastrichtu-ids.github.io/dsri-documentation/docs/guide-local-install).
+
+```bash
+# Clone the Argo workflows repository
+git clone https://github.com/MaastrichtU-IDS/d2s-argo-workflows
+cd d2s-argo-workflows
+
+# Run the Argo workflow, using a config file
+argo submit --serviceaccount argo dqa-workflow-argo.yaml -f support/config-dqa-pipeline.yml
+```
+
+---
+
+# Deprecated installation and Usage
 
 ## Download
 ```shell
@@ -73,45 +118,6 @@ We take an input endpoint, the corresponding fairsharing URL (for the input data
 -ouep http://graphdb.dumontierlab.com/repositories/test2/statements \
 -oun import_user \
 -opw password
-```
-
-## Using CWL workflows
-
-The DQA pipeline can be run using the Common Workflow Language.
-
-> See the [documentation to install CWL runner](http://d2s.semanticscience.org/docs/cwl-install#install-cwl-runner).
-
-```bash
-# Create workspace
-mkdir -p /data/dqa-workspace/output/tmp-outdir
-sudo chown -R ${USER}:${USER} /data/dqa-workspace
-
-# Clone the CWL workflows repository
-git clone https://github.com/MaastrichtU-IDS/d2s-cwl-workflows
-cd d2s-cwl-workflows
-
-# Run the CWL workflow, providing the config YAML file
-cwl-runner \
-  --outdir /data/dqa-workspace/output \
-  --tmp-outdir-prefix=/data/dqa-workspace/output/tmp-outdir/ \
-  --tmpdir-prefix=/data/dqa-workspace/output/tmp-outdir/tmp- \
-  workflows/workflow-dqa.cwl \
-  support/config-cwl-dqa.yml
-```
-
-## Using Argo workflows
-
-The DQA pipeline can be run using [Argo workflow](https://argoproj.github.io/argo).
-
-> See documentation to [run Argo workflows on the DSRI](https://maastrichtu-ids.github.io/dsri-documentation/docs/workflows-argo).
-
-```bash
-# Clone the Argo workflows repository
-git clone https://github.com/MaastrichtU-IDS/d2s-argo-workflows
-cd d2s-argo-workflows
-
-# Run the Argo workflow, with config file
-argo submit --serviceaccount argo dqa-workflow-argo.yaml -f support/config-dqa-pipeline.yml
 ```
 
 # TODO

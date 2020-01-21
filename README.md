@@ -17,6 +17,8 @@ The https://github.com/MaastrichtU-IDS/dqa_combine_statistics module then combin
 
 The DQA pipeline can be run using the [Common Workflow Language](https://www.commonwl.org/). See the [d2s-cwl-workflows repository](https://github.com/MaastrichtU-IDS/d2s-cwl-workflows).
 
+See the workflow file [workflow-dqa.cwl](https://github.com/MaastrichtU-IDS/d2s-cwl-workflows/blob/master/workflows/workflow-dqa.cwl) and the config file [config-cwl-dqa.yml](https://github.com/MaastrichtU-IDS/d2s-cwl-workflows/blob/master/support/config-cwl-dqa.yml).
+
 > See the [documentation to install CWL runner](http://d2s.semanticscience.org/docs/cwl-install#install-cwl-runner).
 
 ```bash
@@ -29,7 +31,7 @@ git clone https://github.com/MaastrichtU-IDS/d2s-cwl-workflows
 cd d2s-cwl-workflows
 
 # Run the CWL workflow, providing the config YAML file
-cwl-runner \
+cwl-runner --custom-net d2s-cwl-workflows_network \
   --outdir /data/dqa-workspace/output \
   --tmp-outdir-prefix=/data/dqa-workspace/output/tmp-outdir/ \
   --tmpdir-prefix=/data/dqa-workspace/output/tmp-outdir/tmp- \
@@ -51,7 +53,13 @@ git clone https://github.com/MaastrichtU-IDS/d2s-argo-workflows
 cd d2s-argo-workflows
 
 # Run the Argo workflow, using a config file
-argo submit --serviceaccount argo dqa-workflow-argo.yaml -f support/config-dqa-pipeline.yml
+argo submit workflows/dqa-workflow-argo.yaml -f support/config-dqa-pipeline.yml
+```
+
+You might need to specify the service account
+
+```bash
+argo submit --serviceaccount argo workflows/dqa-workflow-argo.yaml -f support/config-dqa-pipeline.yml
 ```
 
 ---

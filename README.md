@@ -31,7 +31,7 @@ git clone https://github.com/MaastrichtU-IDS/d2s-cwl-workflows
 cd d2s-cwl-workflows
 
 # Run the CWL workflow, providing the config YAML file
-cwl-runner --custom-net d2s-cwl-workflows_network \
+cwl-runner --custom-net d2s-core_network \
   --outdir /data/dqa-workspace/output \
   --tmp-outdir-prefix=/data/dqa-workspace/output/tmp-outdir/ \
   --tmpdir-prefix=/data/dqa-workspace/output/tmp-outdir/tmp- \

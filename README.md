@@ -15,9 +15,9 @@ The https://github.com/MaastrichtU-IDS/dqa_combine_statistics module then combin
 
 ## Using CWL workflows
 
-The DQA pipeline can be run using the [Common Workflow Language](https://www.commonwl.org/). See the [d2s-cwl-workflows repository](https://github.com/MaastrichtU-IDS/d2s-cwl-workflows).
+The DQA pipeline can be run using the [Common Workflow Language](https://www.commonwl.org/). See the [d2s-core repository](https://github.com/MaastrichtU-IDS/d2s-core).
 
-See the workflow file [workflow-dqa.cwl](https://github.com/MaastrichtU-IDS/d2s-cwl-workflows/blob/master/workflows/workflow-dqa.cwl) and the config file [config-cwl-dqa.yml](https://github.com/MaastrichtU-IDS/d2s-cwl-workflows/blob/master/support/config-cwl-dqa.yml).
+See the workflow file [workflow-dqa.cwl](https://github.com/MaastrichtU-IDS/d2s-core/blob/master/workflows/workflow-dqa.cwl) and the config file [config-cwl-dqa.yml](https://github.com/MaastrichtU-IDS/d2s-core/blob/master/support/config-cwl-dqa.yml).
 
 > See the [documentation to install CWL runner](http://d2s.semanticscience.org/docs/cwl-install#install-cwl-runner).
 
@@ -27,8 +27,8 @@ mkdir -p /data/dqa-workspace/output/tmp-outdir
 sudo chown -R ${USER}:${USER} /data/dqa-workspace
 
 # Clone the CWL workflows repository
-git clone https://github.com/MaastrichtU-IDS/d2s-cwl-workflows
-cd d2s-cwl-workflows
+git clone https://github.com/MaastrichtU-IDS/d2s-core
+cd d2s-core
 
 # Run the CWL workflow, providing the config YAML file
 cwl-runner --custom-net d2s-core_network \
